@@ -17,11 +17,11 @@
             display: flex; flex-direction: column; align-items: center; 
         }
         
-        /* القلوب المتساقطة في الخلفية */
+        /* القلوب المتساقطة */
         .heart { position: fixed; color: var(--accent); font-size: 15px; pointer-events: none; animation: fall linear forwards; z-index: 1; }
         @keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
 
-        /* شاشة البداية بصورة images.jpg */
+        /* شاشة البداية */
         #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(255,192,203,0.3), rgba(255,192,203,0.3)), url('images.jpg');
@@ -31,8 +31,8 @@
         }
         .welcome-btn { background: var(--accent); color: white; border: none; padding: 15px 45px; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 0 25px var(--accent); }
 
-        /* حاوية المحتوى: شفافة جداً لإظهار القلوب بالخلفية */
-        .container { display: none; flex-direction: column; align-items: center; width: 100%; z-index: 10; padding-bottom: 50px; position: relative; }
+        /* حاوية المحتوى */
+        .container { display: none; flex-direction: column; align-items: center; width: 100%; z-index: 10; padding-bottom: 80px; position: relative; }
         
         .main-card { 
             width: 90%; max-width: 400px; 
@@ -66,13 +66,28 @@
         }
         .gift-card.revealed .msg-overlay { display: flex; }
 
-        /* معرض الصور الثمانية */
+        /* زر الموسيقى العائم */
+        #music-control {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: none; /* يظهر فقط بعد الدخول */
+            align-items: center; justify-content: center;
+            cursor: pointer; z-index: 4000;
+            box-shadow: 0 4px 15px rgba(255, 46, 99, 0.4);
+            font-size: 24px; color: white;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* معرض الصور */
         .photo-card { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 10px; border: 1px solid rgba(255, 255, 255, 0.5); width: 90%; max-width: 380px; margin-bottom: 25px; }
         .photo-card img { width: 100%; border-radius: 15px; display: block; }
         .photo-card p { margin-top: 10px; color: var(--accent); font-weight: bold; }
 
         input { width: 80%; padding: 12px; border-radius: 15px; border: 1px solid var(--accent); background: white; text-align: center; margin-bottom: 20px; outline: none; }
-        .final-btn { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 50px; cursor: pointer; width: 100%; margin-top: 20px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 46, 99, 0.3); }
+        .final-btn { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 50px; cursor: pointer; width: 100%; margin-top: 20px; font-weight: bold; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,240,245,0.9); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
     </style>
@@ -80,6 +95,8 @@
 <body>
 
 <audio id="music" loop><source src="15._Youm_Talat.mp3" type="audio/mpeg"></audio>
+
+<div id="music-control" onclick="toggleMusic()">🎵</div>
 
 <div id="welcome-screen">
     <h2 style="color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.4); padding: 20px;">🤍 يوم ما عرفنا بعض كان أسعد يوم في حياتي ❤️</h2>
@@ -107,7 +124,7 @@
         </div>
 
         <div class="grid">
-            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>دا الكرت الأول هنا 🙋😂</span><div class="msg-overlay">محبتش</div></div>
+            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>دا الاكرت الأول هنا🙋😂</span><div class="msg-overlay">محبتش</div></div>
             <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثاني</span><div class="msg-overlay">ولا بحب</div></div>
             <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثالث</span><div class="msg-overlay">ولا هحب حد</div></div>
             <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الرابع</span><div class="msg-overlay">زي ما حبيتك يا اجمل حاجه في حياتي❤️💋</div></div>
@@ -138,6 +155,7 @@
 <script>
     const P = "MYLOVE";
     const longMessageText = "يا هبة، انتي مش بس حبيبتي، انتي الدنيا كلها في عيني.. من يوم ما عرفتك وحياتي نورت، هفضل أحبك لآخر نفس في عمري، وعد عليا هفضل جنبك ومعاكي وسندك، ربنا يخليكي ليا يا أجمل ملكة في الدنيا. ❤️👑";
+    const audio = document.getElementById('music');
 
     function showLogin() { 
         document.getElementById('welcome-screen').style.display = 'none';
@@ -147,16 +165,26 @@
 
     function start() {
         if(document.getElementById('pass').value === P) {
-            document.getElementById('music').play();
+            audio.play();
+            document.getElementById('music-control').style.display = 'flex';
             document.getElementById('login-card').style.display = 'none';
             document.getElementById('dashboard').style.display = 'block';
             setInterval(updateTimer, 1000);
         } else { alert("الباسورد غلط يا روحي! 😉"); }
     }
 
+    function toggleMusic() {
+        if (audio.paused) {
+            audio.play();
+            document.getElementById('music-control').innerHTML = '🎵';
+        } else {
+            audio.pause();
+            document.getElementById('music-control').innerHTML = '🔇';
+        }
+    }
+
     function updateTimer() {
-        // تم ضبط التاريخ على 21 ديسمبر 2025
-        const diff = new Date() - new Date(2025, 11, 21); 
+        const diff = new Date() - new Date(2025, 11, 21); // التاريخ 21/12/2025
         document.getElementById('d').innerText = Math.floor(diff / 86400000);
         document.getElementById('h').innerText = Math.floor((diff / 3600000) % 24);
         document.getElementById('m').innerText = Math.floor((diff / 60000) % 60);
