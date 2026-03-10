@@ -3,128 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إهداء خاص لـ AYA 💖</title>
+    <title>إهداء خاص لـ HEBA 💖</title>
     <style>
-        :root { --accent: #ff2e63; --glow: #00d1ff; --bg: #05020a; }
+        :root { --accent: #ff2e63; --glow: #00d1ff; --bg: #fff0f5; } 
         
         body { 
             background-color: var(--bg); 
-            color: white; 
-            font-family: 'Segoe UI', sans-serif; 
+            color: #444; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; padding: 0; 
             min-height: 100vh; 
             overflow-x: hidden; 
             display: flex; flex-direction: column; align-items: center; 
         }
         
-        /* القلوب المتساقطة خلف كل شيء */
+        /* القلوب المتساقطة في الخلفية */
         .heart { position: fixed; color: var(--accent); font-size: 15px; pointer-events: none; animation: fall linear forwards; z-index: 1; }
         @keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
 
-        /* شاشة البداية بخلفية images.jpg */
+        /* شاشة البداية بصورة images.jpg */
         #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images.jpg');
+            background: linear-gradient(rgba(255,192,203,0.3), rgba(255,192,203,0.3)), url('images.jpg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 2000; text-align: center; padding: 20px; transition: 0.8s;
         }
-        .welcome-title { font-size: 28px; font-weight: bold; text-shadow: 0 0 20px rgba(0,0,0,1); margin-bottom: 25px; line-height: 1.6; }
-        .welcome-btn { background: var(--accent); color: white; border: none; padding: 15px 45px; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 0 25px var(--accent); transition: 0.3s; }
+        .welcome-btn { background: var(--accent); color: white; border: none; padding: 15px 45px; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 0 25px var(--accent); }
 
-        /* البرواز الشفاف جداً (Super Glassmorphism) */
-        .container { display: none; flex-direction: column; align-items: center; width: 100%; padding: 20px 0 60px 0; position: relative; z-index: 10; }
+        /* حاوية المحتوى: شفافة جداً لإظهار القلوب بالخلفية */
+        .container { display: none; flex-direction: column; align-items: center; width: 100%; z-index: 10; padding-bottom: 50px; position: relative; }
         
         .main-card { 
             width: 90%; max-width: 400px; 
-            background: rgba(255, 255, 255, 0.03); /* شفافية قصوى */
-            border: 1px solid rgba(255, 255, 255, 0.12); 
-            border-radius: 35px; padding: 25px 15px; 
-            backdrop-filter: blur(8px); /* بلور خفيف عشان القلوب تبان بوضوح */
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.25); 
+            border: 1px solid rgba(255, 46, 99, 0.15); 
+            border-radius: 35px; padding: 20px; 
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             text-align: center; margin: 15px 0; 
-            box-shadow: 0 0 20px rgba(255, 46, 99, 0.1); 
+            box-shadow: 0 8px 32px rgba(255, 46, 99, 0.05);
         }
 
-        /* نصوص مضيئة */
-        .glow-text { color: #fff; text-shadow: 0 0 10px var(--accent); font-weight: bold; margin-bottom: 15px; }
-        .sub-hints { color: #ff85a2; display: block; margin-bottom: 5px; font-weight: bold; text-shadow: 0 0 5px rgba(255, 46, 99, 0.5); }
-        
-        /* العداد الشفاف المضيء */
+        /* العداد */
         .timer-container { display: flex; justify-content: space-around; margin: 20px 0; }
-        .timer-box { 
-            background: rgba(0, 209, 255, 0.05); 
-            padding: 10px; border-radius: 18px; width: 65px; 
-            border: 1px solid rgba(0, 209, 255, 0.2); 
-            box-shadow: 0 0 10px rgba(0, 209, 255, 0.1);
-        }
-        .timer-box span { display: block; font-size: 20px; font-weight: bold; color: var(--glow); text-shadow: 0 0 10px var(--glow); }
+        .timer-box { background: rgba(255, 255, 255, 0.5); padding: 10px; border-radius: 15px; width: 65px; border: 1px solid var(--accent); }
+        .timer-box span { display: block; font-size: 20px; font-weight: bold; color: var(--accent); }
 
-        /* الكروت الأربعة الشفافة */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        /* الكروت الأربعة */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
         .gift-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 22px 5px; border-radius: 20px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            cursor: pointer; position: relative; overflow: hidden; height: 65px; 
-            display: flex; align-items: center; justify-content: center;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.6); 
+            border-radius: 15px; border: 1px solid var(--accent); 
+            height: 75px; display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; position: relative; overflow: hidden; 
+            font-weight: bold; color: var(--accent);
         }
         .msg-overlay { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--accent); display: flex; align-items: center; 
-            justify-content: center; transform: translateY(100%); transition: 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
-            font-size: 14px; font-weight: bold; padding: 5px; text-shadow: none;
+            position: absolute; top:0; left:0; width:100%; height:100%; 
+            background: var(--accent); color: white; 
+            display: none; align-items: center; justify-content: center; 
+            font-size: 13px; padding: 5px; 
         }
-        .gift-card.revealed { border-color: var(--accent); box-shadow: 0 0 15px var(--accent); }
-        .gift-card.revealed .msg-overlay { transform: translateY(0); }
+        .gift-card.revealed .msg-overlay { display: flex; }
 
         /* معرض الصور الثمانية */
-        .photo-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            border-radius: 25px; padding: 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            width: 90%; max-width: 380px; margin-bottom: 25px;
-            backdrop-filter: blur(5px);
-        }
-        .photo-card img { width: 100%; border-radius: 20px; display: block; filter: brightness(1.1); }
-        .photo-card p { margin-top: 15px; font-size: 16px; color: #fff; text-shadow: 0 0 5px var(--accent); }
+        .photo-card { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 10px; border: 1px solid rgba(255, 255, 255, 0.5); width: 90%; max-width: 380px; margin-bottom: 25px; }
+        .photo-card img { width: 100%; border-radius: 15px; display: block; }
+        .photo-card p { margin-top: 10px; color: var(--accent); font-weight: bold; }
 
-        input { 
-            width: 80%; padding: 14px; border-radius: 15px; 
-            border: 1px solid var(--accent); background: rgba(0,0,0,0.4); 
-            color: white; text-align: center; margin-bottom: 20px; 
-            outline: none; font-size: 16px; box-shadow: 0 0 10px rgba(255, 46, 99, 0.2);
-        }
-        .final-btn { background: rgba(0, 209, 255, 0.1); border: 1px solid var(--glow); color: var(--glow); padding: 15px; border-radius: 50px; cursor: pointer; width: 100%; margin-top: 30px; font-weight: bold; text-shadow: 0 0 10px var(--glow); transition: 0.3s; }
+        input { width: 80%; padding: 12px; border-radius: 15px; border: 1px solid var(--accent); background: white; text-align: center; margin-bottom: 20px; outline: none; }
+        .final-btn { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 50px; cursor: pointer; width: 100%; margin-top: 20px; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 46, 99, 0.3); }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,240,245,0.9); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
     </style>
 </head>
 <body>
 
-<audio id="music" loop>
-    <source src="15._Youm_Talat.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" loop><source src="15._Youm_Talat.mp3" type="audio/mpeg"></audio>
 
 <div id="welcome-screen">
-    <div class="welcome-title">🤍 يوم ما عرفنا بعض كان <br> أسعد يوم في حياتي ❤️</div>
+    <h2 style="color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.4); padding: 20px;">🤍 يوم ما عرفنا بعض كان أسعد يوم في حياتي ❤️</h2>
     <button class="welcome-btn" onclick="showLogin()">ادخلي يا عمري ✨</button>
 </div>
 
 <div class="container" id="main-container">
     <div class="main-card" id="login-card">
-        <h1 style="font-size: 45px; margin:0;">🔒</h1>
-        <h1 class="glow-text">جاهزة يا AYA؟</h1>
-        <input type="password" id="pass" placeholder="اكتبي الباسورد الخاص بنا">
+        <h1>🔒</h1>
+        <h2 style="color: var(--accent);">جاهزة يا HEBA؟</h2>
+        <input type="password" id="pass" placeholder="اكتبي الباسورد">
         <button class="welcome-btn" onclick="start()">فتح المفاجأة ❤️</button>
     </div>
 
     <div class="main-card" id="dashboard" style="display:none;">
-        <div class="glow-text" style="font-size: 20px;">😂 اقفي هنا شوية متجريش</div>
-        <span class="sub-hints">🤍 بحبك</span>
-        <span class="sub-hints">✨ بموت فيكي</span>
-        <span class="sub-hints">🔒 بعشقك</span>
+        <p style="color: var(--accent); font-weight: bold;">😂 اقفي هنا شوية متجريش</p>
+        <p style="color: #ff85a2; font-weight: bold;">🤍 بحبك | ✨ بموت فيكي | 🔒 بعشقك</p>
 
-        <div style="font-size: 22px; font-weight: bold; margin-top: 20px; color: #fff;">❤️ بداية عمري معاكي</div>
+        <h3 style="color: var(--accent); margin-top: 25px;">❤️ بداية عمري معاكي</h3>
         <div class="timer-container">
             <div class="timer-box"><span id="d">0</span><small>يوم</small></div>
             <div class="timer-box"><span id="h">0</span><small>ساعة</small></div>
@@ -132,49 +106,43 @@
             <div class="timer-box"><span id="s">0</span><small>ثانية</small></div>
         </div>
 
-        <div class="glow-text" style="margin-top: 30px; font-size: 18px;">😉❤️ دوسي على الكروت عشان تفتح</div>
         <div class="grid">
-            <div class="gift-card" onclick="reveal(this)"><span>الأول</span><div class="msg-overlay">محبتش</div></div>
-            <div class="gift-card" onclick="reveal(this)"><span>الثاني</span><div class="msg-overlay">ولا هحب</div></div>
-            <div class="gift-card" onclick="reveal(this)"><span>الثالث</span><div class="msg-overlay">ولا هحب حد</div></div>
-            <div class="gift-card" onclick="reveal(this)"><span>الرابع</span><div class="msg-overlay">زي ما حبيتك يا اجمل حاجه في حياتي❤️💋</div></div>
+            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>دا الكرت الأول هنا 🙋😂</span><div class="msg-overlay">محبتش</div></div>
+            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثاني</span><div class="msg-overlay">ولا بحب</div></div>
+            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثالث</span><div class="msg-overlay">ولا هحب حد</div></div>
+            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الرابع</span><div class="msg-overlay">زي ما حبيتك يا اجمل حاجه في حياتي❤️💋</div></div>
         </div>
 
-        <div class="glow-text" style="font-size: 21px; margin: 40px 0 15px 0;">👇 حياتي باختصار هنا</div>
-        <div id="gallery" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <div class="photo-card"><img src="1.jpg"><p>ضحكتك بتنور دنيتي ❤️</p></div>
-            <div class="photo-card"><img src="2.jpg"><p>يا أغلى من روحي يا آية ✨</p></div>
-            <div class="photo-card"><img src="3.jpg"><p>كل يوم معاكي هو عيد ليا 🎁</p></div>
-            <div class="photo-card"><img src="4.jpg"><p>انتي الملكة اللي في قلبي 👑</p></div>
-            <div class="photo-card"><img src="5.jpg"><p>عيني مش شايفة غيرك في الدنيا 😍</p></div>
-            <div class="photo-card"><img src="6.jpg"><p>وعد عليا هفضل جنبك للأبد 💍</p></div>
-            <div class="photo-card"><img src="7.jpg"><p>انتي أجمل صدفة في عمري 💖</p></div>
-            <div class="photo-card"><img src="8.jpg"><p>بحبك لآخر نفس في عمري ❤️💋</p></div>
-        </div>
+        <h3 style="color: var(--accent);">👇 حياتي باختصار هنا</h3>
+        <div class="photo-card"><img src="1.jpg"><p>ضحكتك بتنور دنيتي ❤️</p></div>
+        <div class="photo-card"><img src="2.jpg"><p>يا أغلى من روحي يا هبة ✨</p></div>
+        <div class="photo-card"><img src="3.jpg"><p>كل يوم معاكي هو عيد ليا 🎁</p></div>
+        <div class="photo-card"><img src="4.jpg"><p>انتي الملكة اللي في قلبي 👑</p></div>
+        <div class="photo-card"><img src="5.jpg"><p>عيني مش شايفة غيرك في الدنيا 😍</p></div>
+        <div class="photo-card"><img src="66.jpg"><p>وعد عليا هفضل جنبك للأبد 💍</p></div>
+        <div class="photo-card"><img src="7.jpg"><p>انتي أجمل صدفة في عمري 💖</p></div>
+        <div class="photo-card"><img src="8.jpg"><p>بحبك لآخر نفس ❤️💋</p></div>
 
         <button class="final-btn" onclick="openModal()">خلصتي؟ لسه في رسالة دوسي هنا ✨</button>
     </div>
 </div>
 
-<div class="modal" id="msgModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:3000; justify-content:center; align-items:center; padding:20px;">
-    <div class="main-card" style="background:rgba(10,10,10,0.9); border: 1px solid var(--accent);">
+<div class="modal" id="msgModal">
+    <div class="main-card" style="background: white; border: 2px solid var(--accent);">
         <h2 style="color: var(--accent);">رسالة لقلبك 💌</h2>
-        <p id="typing-text" style="line-height: 1.8; font-size: 17px;"></p>
-        <button style="background:var(--accent); color:white; border:none; margin-top:25px; padding: 10px 25px; border-radius: 20px; cursor:pointer;" onclick="closeModal()">إغلاق ×</button>
+        <p id="typing-text" style="line-height: 1.8; font-size: 17px; color: #444; min-height: 80px;"></p>
+        <button class="final-btn" onclick="closeModal()">إغلاق ×</button>
     </div>
 </div>
 
 <script>
     const P = "1420041712004";
-    const longMessageText = "يا آية، انتي مش بس حبيبتي، انتي الدنيا كلها في عيني.. من يوم ما عرفتك وحياتي نورت، هفضل أحبك لآخر نفس في عمري، وعد عليا هفضل جنبك ومعاكي وسندك، ربنا يخليكي ليا يا أجمل ملكة في الدنيا. ❤️👑";
+    const longMessageText = "يا هبة، انتي مش بس حبيبتي، انتي الدنيا كلها في عيني.. من يوم ما عرفتك وحياتي نورت، هفضل أحبك لآخر نفس في عمري، وعد عليا هفضل جنبك ومعاكي وسندك، ربنا يخليكي ليا يا أجمل ملكة في الدنيا. ❤️👑";
 
     function showLogin() { 
-        document.getElementById('welcome-screen').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('welcome-screen').style.display = 'none';
-            document.getElementById('main-container').style.display = 'flex';
-            spawnHearts();
-        }, 800);
+        document.getElementById('welcome-screen').style.display = 'none';
+        document.getElementById('main-container').style.display = 'flex';
+        spawnHearts();
     }
 
     function start() {
@@ -187,14 +155,13 @@
     }
 
     function updateTimer() {
-        const diff = new Date() - new Date(2025, 6, 1);
+        // تم ضبط التاريخ على 21 ديسمبر 2025
+        const diff = new Date() - new Date(2025, 11, 21); 
         document.getElementById('d').innerText = Math.floor(diff / 86400000);
         document.getElementById('h').innerText = Math.floor((diff / 3600000) % 24);
         document.getElementById('m').innerText = Math.floor((diff / 60000) % 60);
         document.getElementById('s').innerText = Math.floor((diff / 1000) % 60);
     }
-
-    function reveal(el) { el.classList.toggle('revealed'); }
 
     function spawnHearts() {
         setInterval(() => {
@@ -204,17 +171,23 @@
             h.style.animationDuration = (Math.random() * 3 + 2) + 's';
             document.body.appendChild(h);
             setTimeout(() => h.remove(), 5000);
-        }, 400);
+        }, 300);
     }
 
     let i = 0;
     function typeWriter() {
         if (i < longMessageText.length) {
             document.getElementById("typing-text").innerHTML += longMessageText.charAt(i);
-            i++; setTimeout(typeWriter, 55);
+            i++; setTimeout(typeWriter, 50);
         }
     }
-    function openModal() { document.getElementById('msgModal').style.display = 'flex'; document.getElementById("typing-text").innerHTML = ""; i = 0; typeWriter(); }
+
+    function openModal() { 
+        document.getElementById('msgModal').style.display = 'flex';
+        document.getElementById("typing-text").innerHTML = ""; 
+        i = 0; typeWriter();
+    }
+    
     function closeModal() { document.getElementById('msgModal').style.display = 'none'; }
 </script>
 </body>
