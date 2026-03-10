@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Secret Page</title>
+
+<style>
+body{
+background:black;
+color:white;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+text-align:center;
+}
+
+.box{
+border:2px solid white;
+padding:30px;
+border-radius:15px;
+}
+
+input{
+padding:10px;
+font-size:18px;
+border-radius:10px;
+border:none;
+text-align:center;
+}
+
+button{
+margin-top:10px;
+padding:10px 20px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff2d55;
+color:white;
+cursor:pointer;
+}
+
+#main{
+display:none;
+}
+
+h1{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.timer{
+font-size:30px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="login" class="box">
+
+<h2>Secret Page</h2>
+
+<input type="password" id="pass" placeholder="ادخل الباسورد">
+
+<br>
+
+<button onclick="checkPass()">دخول</button>
+
+<p id="error"></p>
+
+</div>
+
+
+<div id="main">
+
+<h1>AYA ❤️</h1>
+
+<div class="timer" id="time"></div>
+
+<audio id="song" autoplay loop>
+<source src="amr.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+
+<script>
+
+function checkPass(){
+
+let password="1420041712004";
+
+let input=document.getElementById("pass").value;
+
+if(input===password){
+
+document.getElementById("login").style.display="none";
+document.getElementById("main").style.display="block";
+
+document.getElementById("song").play();
+
+}
+
+else{
+
+document.getElementById("error").innerHTML="الباسورد غلط";
+
+}
+
+}
+
+
+
+let startDate=new Date("July 1, 2025 00:00:00");
+
+function updateTimer(){
+
+let now=new Date();
+
+let diff=now-startDate;
+
+let days=Math.floor(diff/(1000*60*60*24));
+let hours=Math.floor(diff/(1000*60*60)%24);
+let minutes=Math.floor(diff/(1000*60)%60);
+let seconds=Math.floor(diff/1000%60);
+
+document.getElementById("time").innerHTML=
+days+" يوم "+
+hours+" ساعة "+
+minutes+" دقيقة "+
+seconds+" ثانية";
+
+}
+
+setInterval(updateTimer,1000);
+
+</script>
+
+</body>
+</html>
