@@ -21,7 +21,7 @@
         .heart { position: fixed; color: var(--accent); font-size: 15px; pointer-events: none; animation: fall linear forwards; z-index: 1; }
         @keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
 
-        /* شاشة البداية */
+        /* شاشة البداية بصورة images.jpg */
         #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(255,192,203,0.3), rgba(255,192,203,0.3)), url('images.jpg');
@@ -49,7 +49,22 @@
         .timer-box { background: rgba(255, 255, 255, 0.5); padding: 10px; border-radius: 15px; width: 65px; border: 1px solid var(--accent); }
         .timer-box span { display: block; font-size: 20px; font-weight: bold; color: var(--accent); }
 
-        /* الكروت الأربعة */
+        /* زر الموسيقى العائم */
+        #music-control {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: none; 
+            align-items: center; justify-content: center;
+            cursor: pointer; z-index: 4000;
+            box-shadow: 0 4px 15px rgba(255, 46, 99, 0.4);
+            font-size: 24px; color: white;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* الشبكة والكروت */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
         .gift-card { 
             background: rgba(255, 255, 255, 0.6); 
@@ -66,22 +81,6 @@
         }
         .gift-card.revealed .msg-overlay { display: flex; }
 
-        /* زر الموسيقى العائم */
-        #music-control {
-            position: fixed; bottom: 20px; right: 20px;
-            width: 50px; height: 50px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: none; /* يظهر فقط بعد الدخول */
-            align-items: center; justify-content: center;
-            cursor: pointer; z-index: 4000;
-            box-shadow: 0 4px 15px rgba(255, 46, 99, 0.4);
-            font-size: 24px; color: white;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
-        /* معرض الصور */
         .photo-card { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 10px; border: 1px solid rgba(255, 255, 255, 0.5); width: 90%; max-width: 380px; margin-bottom: 25px; }
         .photo-card img { width: 100%; border-radius: 15px; display: block; }
         .photo-card p { margin-top: 10px; color: var(--accent); font-weight: bold; }
@@ -124,7 +123,7 @@
         </div>
 
         <div class="grid">
-            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>دا الاكرت الأول هنا🙋😂</span><div class="msg-overlay">محبتش</div></div>
+            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الأول</span><div class="msg-overlay">محبتش</div></div>
             <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثاني</span><div class="msg-overlay">ولا بحب</div></div>
             <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثالث</span><div class="msg-overlay">ولا هحب حد</div></div>
             <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الرابع</span><div class="msg-overlay">زي ما حبيتك يا اجمل حاجه في حياتي❤️💋</div></div>
@@ -135,8 +134,8 @@
         <div class="photo-card"><img src="2.jpg"><p>يا أغلى من روحي يا هبة ✨</p></div>
         <div class="photo-card"><img src="3.jpg"><p>كل يوم معاكي هو عيد ليا 🎁</p></div>
         <div class="photo-card"><img src="4.jpg"><p>انتي الملكة اللي في قلبي 👑</p></div>
-        <div class="photo-card"><img src="5.jpg"><p>عيني مش شايفة غيرك في الدنيا 😍</p></div>
-        <div class="photo-card"><img src="66.jpg"><p>وعد عليا هفضل جنبك للأبد 💍</p></div>
+        <div class="photo-card"><img src="55.jpg"><p>عيني مش شايفة غيرك في الدنيا 😍</p></div>
+        <div class="photo-card"><img src="6.jpg"><p>وعد عليا هفضل جنبك للأبد 💍</p></div>
         <div class="photo-card"><img src="7.jpg"><p>انتي أجمل صدفة في عمري 💖</p></div>
         <div class="photo-card"><img src="8.jpg"><p>بحبك لآخر نفس ❤️💋</p></div>
 
@@ -153,7 +152,7 @@
 </div>
 
 <script>
-    const P = "5515879462";
+    const P = "2192006"; // الباسورد المطلوب
     const longMessageText = "يا هبة، انتي مش بس حبيبتي، انتي الدنيا كلها في عيني.. من يوم ما عرفتك وحياتي نورت، هفضل أحبك لآخر نفس في عمري، وعد عليا هفضل جنبك ومعاكي وسندك، ربنا يخليكي ليا يا أجمل ملكة في الدنيا. ❤️👑";
     const audio = document.getElementById('music');
 
@@ -184,7 +183,8 @@
     }
 
     function updateTimer() {
-        const diff = new Date() - new Date(2025, 11, 21); // التاريخ 21/12/2025
+        // تاريخ 21 ديسمبر 2025 (شهر 11 في البرمجة لأن العد يبدأ من 0)
+        const diff = new Date() - new Date(2025, 11, 21); 
         document.getElementById('d').innerText = Math.floor(diff / 86400000);
         document.getElementById('h').innerText = Math.floor((diff / 3600000) % 24);
         document.getElementById('m').innerText = Math.floor((diff / 60000) % 60);
