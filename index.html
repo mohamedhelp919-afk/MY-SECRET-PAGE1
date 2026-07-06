@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إهداء خاص لـ HEBA 💖</title>
+    <title>إهداء خاص لـ DONYA 💖</title>
     <style>
         :root { --accent: #ff2e63; --glow: #00d1ff; --bg: #fff0f5; } 
         
@@ -63,160 +63,97 @@
             animation: pulse 2s infinite;
         }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
-        /* الشبكة والكروت */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
-        .gift-card { 
-            background: rgba(255, 255, 255, 0.6); 
-            border-radius: 15px; border: 1px solid var(--accent); 
-            height: 75px; display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; position: relative; overflow: hidden; 
-            font-weight: bold; color: var(--accent);
-        }
-        .msg-overlay { 
-            position: absolute; top:0; left:0; width:100%; height:100%; 
-            background: var(--accent); color: white; 
-            display: none; align-items: center; justify-content: center; 
-            font-size: 13px; padding: 5px; 
-        }
-        .gift-card.revealed .msg-overlay { display: flex; }
-
-        .photo-card { background: rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 10px; border: 1px solid rgba(255, 255, 255, 0.5); width: 90%; max-width: 380px; margin-bottom: 25px; }
-        .photo-card img { width: 100%; border-radius: 15px; display: block; }
-        .photo-card p { margin-top: 10px; color: var(--accent); font-weight: bold; }
-
-        input { width: 80%; padding: 12px; border-radius: 15px; border: 1px solid var(--accent); background: white; text-align: center; margin-bottom: 20px; outline: none; }
-        .final-btn { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 50px; cursor: pointer; width: 100%; margin-top: 20px; font-weight: bold; }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,240,245,0.9); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
     </style>
 </head>
 <body>
 
-<audio id="music" loop><source src="15._Youm_Talat.mp3" type="audio/mpeg"></audio>
-
-<div id="music-control" onclick="toggleMusic()">🎵</div>
-
-<div id="welcome-screen">
-    <h2 style="color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.4); padding: 20px;">🤍 يوم ما عرفنا بعض كان أسعد يوم في حياتي ❤️</h2>
-    <button class="welcome-btn" onclick="showLogin()">ادخلي يا عمري ✨</button>
-</div>
-
-<div class="container" id="main-container">
-    <div class="main-card" id="login-card">
-        <h1>🔒</h1>
-        <h2 style="color: var(--accent);">جاهزة يا HEBA؟</h2>
-        <input type="password" id="pass" placeholder="اكتبي الباسورد">
-        <button class="welcome-btn" onclick="start()">فتح المفاجأة ❤️</button>
+    <!-- شاشة الترحيب والبداية -->
+    <div id="welcome-screen">
+        <h1 style="color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: 2.5rem; margin-bottom: 30px;">إهداء خاص لـ DONYA 💖</h1>
+        <button class="welcome-btn" onclick="startExperience()">افتح الإهداء ✨</button>
     </div>
 
-    <div class="main-card" id="dashboard" style="display:none;">
-        <p style="color: var(--accent); font-weight: bold;">😂 اقفي هنا شوية متجريش</p>
-        <p style="color: #ff85a2; font-weight: bold;">🤍 بحبك | ✨ بموت فيكي | 🔒 بعشقك</p>
-
-        <h3 style="color: var(--accent); margin-top: 25px;">❤️ بداية عمري معاكي</h3>
-        <div class="timer-container">
-            <div class="timer-box"><span id="d">0</span><small>يوم</small></div>
-            <div class="timer-box"><span id="h">0</span><small>ساعة</small></div>
-            <div class="timer-box"><span id="m">0</span><small>دقيقة</small></div>
-            <div class="timer-box"><span id="s">0</span><small>ثانية</small></div>
+    <!-- حاوية المحتوى الرئيسي -->
+    <div class="container" id="main-content">
+        <div class="main-card">
+            <h2 style="color: var(--accent); margin-top: 0;">كل لحظة وأنتِ بخير يا DONYA 🥰</h2>
+            <p style="line-height: 1.6; font-size: 1.1rem;">تم تصميم هذه الصفحة خصيصاً للتعبير عن معزتك ومكانتك الغالية.</p>
+            
+            <hr style="border: 0; border-top: 1px solid rgba(255, 46, 99, 0.2); margin: 20px 0;">
+            
+            <!-- العداد الزمني التنازلي/التصاعدي -->
+            <div class="timer-container">
+                <div class="timer-box"><span id="days">00</span>أيام</div>
+                <div class="timer-box"><span id="hours">00</span>ساعات</div>
+                <div class="timer-box"><span id="minutes">00</span>دقائق</div>
+                <div class="timer-box"><span id="seconds">00</span>ثواني</div>
+            </div>
         </div>
-
-        <div class="grid">
-            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الأول</span><div class="msg-overlay">محبتش</div></div>
-            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثاني</span><div class="msg-overlay">ولا بحب</div></div>
-            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الثالث</span><div class="msg-overlay">ولا هحب حد</div></div>
-            <div class="gift-card" onclick="this.classList.toggle('revealed')"><span>الرابع</span><div class="msg-overlay">زي ما حبيتك يا اجمل حاجه في حياتي❤️💋</div></div>
-        </div>
-
-        <h3 style="color: var(--accent);">👇 حياتي باختصار هنا</h3>
-        <div class="photo-card"><img src="1.jpg"><p>ضحكتك بتنور دنيتي ❤️</p></div>
-        <div class="photo-card"><img src="2.jpg"><p>يا أغلى من روحي يا هبة ✨</p></div>
-        <div class="photo-card"><img src="3.jpg"><p>كل يوم معاكي هو عيد ليا 🎁</p></div>
-        <div class="photo-card"><img src="4.jpg"><p>انتي الملكة اللي في قلبي 👑</p></div>
-        <div class="photo-card"><img src="55.jpg"><p>عيني مش شايفة غيرك في الدنيا 😍</p></div>
-        <div class="photo-card"><img src="6.jpg"><p>وعد عليا هفضل جنبك للأبد 💍</p></div>
-        <div class="photo-card"><img src="7.jpg"><p>انتي أجمل صدفة في عمري 💖</p></div>
-        <div class="photo-card"><img src="8.jpg"><p>بحبك لآخر نفس ❤️💋</p></div>
-
-        <button class="final-btn" onclick="openModal()">خلصتي؟ لسه في رسالة دوسي هنا ✨</button>
     </div>
-</div>
 
-<div class="modal" id="msgModal">
-    <div class="main-card" style="background: white; border: 2px solid var(--accent);">
-        <h2 style="color: var(--accent);">رسالة لقلبك 💌</h2>
-        <p id="typing-text" style="line-height: 1.8; font-size: 17px; color: #444; min-height: 80px;"></p>
-        <button class="final-btn" onclick="closeModal()">إغلاق ×</button>
-    </div>
-</div>
+    <!-- زر التحكم بالموسيقى -->
+    <div id="music-control" onclick="toggleMusic()">🎵</div>
 
-<script>
-    const P = "5515879462"; // الباسورد المطلوب
-    const longMessageText = "يا هبة، انتي مش بس حبيبتي، انتي الدنيا كلها في عيني.. من يوم ما عرفتك وحياتي نورت، هفضل أحبك لآخر نفس في عمري، وعد عليا هفضل جنبك ومعاكي وسندك، ربنا يخليكي ليا يا أجمل ملكة في الدنيا. ❤️👑";
-    const audio = document.getElementById('music');
+    <!-- ملف الصوت الصامت كمثال (يمكنك تغيير الرابط برابط أغنيتك المفضلة) -->
+    <audio id="bg-music" loop>
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
 
-    function showLogin() { 
-        document.getElementById('welcome-screen').style.display = 'none';
-        document.getElementById('main-container').style.display = 'flex';
-        spawnHearts();
-    }
-
-    function start() {
-        if(document.getElementById('pass').value === P) {
-            audio.play();
-            document.getElementById('music-control').style.display = 'flex';
-            document.getElementById('login-card').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
-            setInterval(updateTimer, 1000);
-        } else { alert("الباسورد غلط يا روحي! 😉"); }
-    }
-
-    function toggleMusic() {
-        if (audio.paused) {
-            audio.play();
-            document.getElementById('music-control').innerHTML = '🎵';
-        } else {
-            audio.pause();
-            document.getElementById('music-control').innerHTML = '🔇';
+    <script>
+        // دالة بدء التجربة بعد الضغط على الزر
+        function startExperience() {
+            document.getElementById('welcome-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'flex';
+                document.getElementById('music-control').style.display = 'flex';
+                
+                // تشغيل الموسيقى
+                const music = document.getElementById('bg-music');
+                music.play().catch(error => console.log("تحتاج الموسيقى لتفاعل المستخدم أولاً"));
+                
+                // بدء تأثير القلوب المتساقطة
+                setInterval(createHeart, 300);
+            }, 800);
         }
-    }
 
-    function updateTimer() {
-        // تاريخ 21 ديسمبر 2025 (شهر 11 في البرمجة لأن العد يبدأ من 0)
-        const diff = new Date() - new Date(2025, 11, 21); 
-        document.getElementById('d').innerText = Math.floor(diff / 86400000);
-        document.getElementById('h').innerText = Math.floor((diff / 3600000) % 24);
-        document.getElementById('m').innerText = Math.floor((diff / 60000) % 60);
-        document.getElementById('s').innerText = Math.floor((diff / 1000) % 60);
-    }
+        // دالة إنشاء القلوب المتساقطة
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
 
-    function spawnHearts() {
+        // دالة تشغيل وإيقاف الموسيقى
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-control');
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = '🎵';
+            } else {
+                music.pause();
+                btn.innerHTML = '🔇';
+            }
+        }
+
+        // نظام العداد (معد مسبقاً لزيادة الثواني كعداد وقت مستغرق، يمكنك تعديله لتاريخ محدد)
+        let count = 0;
         setInterval(() => {
-            const h = document.createElement('div');
-            h.className = 'heart'; h.innerHTML = '❤️';
-            h.style.left = Math.random() * 100 + 'vw';
-            h.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }, 300);
-    }
-
-    let i = 0;
-    function typeWriter() {
-        if (i < longMessageText.length) {
-            document.getElementById("typing-text").innerHTML += longMessageText.charAt(i);
-            i++; setTimeout(typeWriter, 50);
-        }
-    }
-
-    function openModal() { 
-        document.getElementById('msgModal').style.display = 'flex';
-        document.getElementById("typing-text").innerHTML = ""; 
-        i = 0; typeWriter();
-    }
-    
-    function closeModal() { document.getElementById('msgModal').style.display = 'none'; }
-</script>
+            count++;
+            document.getElementById('seconds').innerText = String(count % 60).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(Math.floor(count / 60) % 60).padStart(2, '0');
+            document.getElementById('hours').innerText = String(Math.floor(count / 3600) % 24).padStart(2, '0');
+            document.getElementById('days').innerText = String(Math.floor(count / 86400)).padStart(2, '0');
+        }, 1000);
+    </script>
 </body>
 </html>
